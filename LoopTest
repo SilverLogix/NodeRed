@@ -1,0 +1,183 @@
+[
+    {
+        "id": "812b1e0a.ae16e",
+        "type": "tab",
+        "label": "Loop Test",
+        "disabled": true,
+        "info": ""
+    },
+    {
+        "id": "e29ac53f.8a76c8",
+        "type": "inject",
+        "z": "812b1e0a.ae16e",
+        "name": "",
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 90,
+        "y": 380,
+        "wires": [
+            [
+                "c3b026b1.371b58"
+            ]
+        ]
+    },
+    {
+        "id": "94520610.d0b0c8",
+        "type": "switch",
+        "z": "812b1e0a.ae16e",
+        "name": "== 0 or 1",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 240,
+        "y": 260,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "cace5c8b.cf43f",
+        "type": "inject",
+        "z": "812b1e0a.ae16e",
+        "name": "",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 90,
+        "y": 500,
+        "wires": [
+            [
+                "c3b026b1.371b58"
+            ]
+        ]
+    },
+    {
+        "id": "fca84841.d73298",
+        "type": "debug",
+        "z": "812b1e0a.ae16e",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 630,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "f1468598.f9acb8",
+        "type": "delay",
+        "z": "812b1e0a.ae16e",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 340,
+        "y": 400,
+        "wires": [
+            [
+                "2268e764.b1d9c8",
+                "fca84841.d73298"
+            ]
+        ]
+    },
+    {
+        "id": "2268e764.b1d9c8",
+        "type": "change",
+        "z": "812b1e0a.ae16e",
+        "name": "0",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 530,
+        "y": 340,
+        "wires": [
+            [
+                "38a8065a.d5707a"
+            ]
+        ]
+    },
+    {
+        "id": "38a8065a.d5707a",
+        "type": "delay",
+        "z": "812b1e0a.ae16e",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 540,
+        "y": 280,
+        "wires": [
+            [
+                "fca84841.d73298"
+            ]
+        ]
+    },
+    {
+        "id": "c3b026b1.371b58",
+        "type": "function",
+        "z": "812b1e0a.ae16e",
+        "name": "",
+        "func": "var payload = msg.payload;\n\nswitch(payload)\n{\n case 0: return {payload:99}; break;\n case 1: return {}; break;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 190,
+        "y": 440,
+        "wires": [
+            [
+                "fca84841.d73298",
+                "f1468598.f9acb8"
+            ]
+        ]
+    }
+]
