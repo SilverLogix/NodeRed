@@ -1,0 +1,129 @@
+[
+    {
+        "id": "63b8cedc.0158d",
+        "type": "tab",
+        "label": "Hook Test",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "f3716e9.613329",
+        "type": "http in",
+        "z": "63b8cedc.0158d",
+        "name": "",
+        "url": "/hook",
+        "method": "get",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 260,
+        "wires": [
+            [
+                "12129ba7.f5e3e4"
+            ]
+        ]
+    },
+    {
+        "id": "1b95a758.0b9289",
+        "type": "debug",
+        "z": "63b8cedc.0158d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 490,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "12129ba7.f5e3e4",
+        "type": "change",
+        "z": "63b8cedc.0158d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "1",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 280,
+        "y": 260,
+        "wires": [
+            [
+                "1b95a758.0b9289",
+                "818cf9c9.efb1a8"
+            ]
+        ]
+    },
+    {
+        "id": "bd663a22.39b588",
+        "type": "rpi-gpio out",
+        "z": "63b8cedc.0158d",
+        "name": "",
+        "pin": "3",
+        "set": "",
+        "level": "0",
+        "freq": "msg.payload",
+        "out": "pwm",
+        "x": 640,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "818cf9c9.efb1a8",
+        "type": "change",
+        "z": "63b8cedc.0158d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "90",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 360,
+        "wires": [
+            [
+                "bd663a22.39b588"
+            ]
+        ]
+    },
+    {
+        "id": "3b8c8e10.93feb2",
+        "type": "inject",
+        "z": "63b8cedc.0158d",
+        "name": "",
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 510,
+        "y": 440,
+        "wires": [
+            [
+                "bd663a22.39b588"
+            ]
+        ]
+    }
+]
