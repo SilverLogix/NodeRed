@@ -1,0 +1,189 @@
+[
+    {
+        "id": "2cba8b7a.2ee074",
+        "type": "tab",
+        "label": "Count",
+        "disabled": true,
+        "info": ""
+    },
+    {
+        "id": "1150c68.b4f883a",
+        "type": "inject",
+        "z": "2cba8b7a.2ee074",
+        "name": "",
+        "topic": "",
+        "payload": "start",
+        "payloadType": "flow",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 120,
+        "y": 380,
+        "wires": [
+            [
+                "44edfdc0.3950b4"
+            ]
+        ]
+    },
+    {
+        "id": "bde2e55b.4e2d58",
+        "type": "debug",
+        "z": "2cba8b7a.2ee074",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 470,
+        "y": 270,
+        "wires": []
+    },
+    {
+        "id": "d87104d4.8accc8",
+        "type": "inject",
+        "z": "2cba8b7a.2ee074",
+        "name": "Count Up",
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 130,
+        "y": 170,
+        "wires": [
+            [
+                "2662d879.2e8308"
+            ]
+        ]
+    },
+    {
+        "id": "2662d879.2e8308",
+        "type": "function",
+        "z": "2cba8b7a.2ee074",
+        "name": "'count' ++",
+        "func": "value = flow.get('count')||0\nvalue ++;\nflow.set('count',value);\n\nreturn {payload : value};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 280,
+        "y": 180,
+        "wires": [
+            [
+                "bde2e55b.4e2d58"
+            ]
+        ]
+    },
+    {
+        "id": "44edfdc0.3950b4",
+        "type": "function",
+        "z": "2cba8b7a.2ee074",
+        "name": "get 'count'",
+        "func": "\nreturn {payload : flow.get('count')};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 280,
+        "y": 360,
+        "wires": [
+            [
+                "bde2e55b.4e2d58"
+            ]
+        ]
+    },
+    {
+        "id": "42fbe787.26a9f8",
+        "type": "inject",
+        "z": "2cba8b7a.2ee074",
+        "name": "",
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 430,
+        "y": 470,
+        "wires": [
+            [
+                "37399bd5.4c0594"
+            ]
+        ]
+    },
+    {
+        "id": "37399bd5.4c0594",
+        "type": "function",
+        "z": "2cba8b7a.2ee074",
+        "name": "set 'count' = 0",
+        "func": "value = 0;\nflow.set('count',value);",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 590,
+        "y": 470,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3d0ec4bb.525c2c",
+        "type": "inject",
+        "z": "2cba8b7a.2ee074",
+        "name": "",
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 250,
+        "y": 60,
+        "wires": [
+            [
+                "c1c3cbf5.3c5338"
+            ]
+        ]
+    },
+    {
+        "id": "c1c3cbf5.3c5338",
+        "type": "function",
+        "z": "2cba8b7a.2ee074",
+        "name": "",
+        "func": "\nvalue = {payload : flow.get('count')};\n\nif (value < 22)\n{\nvalue = 0;\nflow.set('count',value);\nreturn {payload : flow.get('count')};\n}\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 370,
+        "y": 70,
+        "wires": [
+            [
+                "b549f1e0.95943"
+            ]
+        ]
+    },
+    {
+        "id": "b549f1e0.95943",
+        "type": "debug",
+        "z": "2cba8b7a.2ee074",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 510,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "df9f348f.390ce8",
+        "type": "comment",
+        "z": "2cba8b7a.2ee074",
+        "name": "Broken",
+        "info": "",
+        "x": 370,
+        "y": 40,
+        "wires": []
+    }
+]
