@@ -1,0 +1,127 @@
+[
+    {
+        "id": "fc1f05e9.633b18",
+        "type": "tab",
+        "label": "Ping Test",
+        "disabled": true,
+        "info": ""
+    },
+    {
+        "id": "3576014d.c991fe",
+        "type": "ping",
+        "z": "fc1f05e9.633b18",
+        "name": "",
+        "host": "8.8.8.8",
+        "timer": "10",
+        "x": 70,
+        "y": 330,
+        "wires": [
+            [
+                "3d0860c4.0f37c"
+            ]
+        ]
+    },
+    {
+        "id": "b9202c1a.ceb58",
+        "type": "exec",
+        "z": "fc1f05e9.633b18",
+        "command": "ifconfig wlan0 down",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "3",
+        "oldrc": false,
+        "name": "wlan down",
+        "x": 340,
+        "y": 170,
+        "wires": [
+            [
+                "755d9e49.3b692"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "3d0860c4.0f37c",
+        "type": "debug",
+        "z": "fc1f05e9.633b18",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 250,
+        "y": 330,
+        "wires": []
+    },
+    {
+        "id": "3206a0ba.e8175",
+        "type": "comment",
+        "z": "fc1f05e9.633b18",
+        "name": "Ping Payload",
+        "info": "\n msg.payload = ping   :number\n \n UNLESS NO INTERNET\n msg.payload = false  :boolean\n ",
+        "x": 250,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "755d9e49.3b692",
+        "type": "exec",
+        "z": "fc1f05e9.633b18",
+        "command": "ifconfig wlan0 up",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "3",
+        "oldrc": false,
+        "name": "wlan up",
+        "x": 500,
+        "y": 180,
+        "wires": [
+            [
+                "d57be5ff.b2ef48"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "62663793.b272e8",
+        "type": "switch",
+        "z": "fc1f05e9.633b18",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 190,
+        "y": 180,
+        "wires": [
+            [
+                "b9202c1a.ceb58"
+            ]
+        ]
+    },
+    {
+        "id": "d57be5ff.b2ef48",
+        "type": "debug",
+        "z": "fc1f05e9.633b18",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 650,
+        "y": 150,
+        "wires": []
+    }
+]
