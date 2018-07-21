@@ -1,0 +1,293 @@
+[
+    {
+        "id": "aa72d95d.60ed08",
+        "type": "ui_template",
+        "z": "fc3d37f3.7fea58",
+        "group": "d182a1d2.cb1fa",
+        "name": "blue",
+        "order": 4,
+        "width": "2",
+        "height": "2",
+        "format": "\n<md-button class=\"vibrate filled touched bigfont rounded\" style=\"background-color:#2980b9\"   ng-click=\"send({payload: 'Hello World'})\"> \n    Blue<br/>button\n</md-button> \n\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "x": 190,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e3277a28.7fa8a8",
+        "type": "ui_template",
+        "z": "fc3d37f3.7fea58",
+        "group": "d182a1d2.cb1fa",
+        "name": "red",
+        "order": 2,
+        "width": "2",
+        "height": "2",
+        "format": "\n<md-button class=\"vibrate filled touched bigfont rounded\" style=\"background-color:#c0392b\" ng-click=\"send({payload: 'Hello World'})\"> \n    Red<br/>button\n</md-button> \n\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 190,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9985d2c6.ecf17",
+        "type": "ui_template",
+        "z": "fc3d37f3.7fea58",
+        "group": "d182a1d2.cb1fa",
+        "name": "green",
+        "order": 3,
+        "width": "2",
+        "height": "2",
+        "format": "\n<md-button class=\"filled touched bigfont rounded vibrate\" style=\"background-color:#27ae60\" ng-click=\"send({payload: 'Hello World'})\"> \n    Green<br/>button\n</md-button> \n\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "x": 190,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b688aa08.0a14c8",
+        "type": "ui_template",
+        "z": "fc3d37f3.7fea58",
+        "group": "d182a1d2.cb1fa",
+        "name": "",
+        "order": 5,
+        "width": "2",
+        "height": "1",
+        "format": "\n<md-button class=\"vibrate filled touched smallfont rounded\" style=\"background-color:#16a085\"   ng-click=\"send({payload: 'Hello World'})\"> \n    Blue<br/>button\n</md-button> \n\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 200,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "47ec7993.937388",
+        "type": "ui_template",
+        "z": "fc3d37f3.7fea58",
+        "group": "d182a1d2.cb1fa",
+        "name": "",
+        "order": 6,
+        "width": "2",
+        "height": "1",
+        "format": "\n<md-button class=\"vibrate filled touched smallfont rounded\" style=\"background-color:#e67e22\" ng-click=\"send({payload: 'Hello World'})\"> \n    Red<br/>button\n</md-button> \n\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 200,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d89bf20d.5f8d9",
+        "type": "ui_template",
+        "z": "fc3d37f3.7fea58",
+        "group": "d182a1d2.cb1fa",
+        "name": "on",
+        "order": 7,
+        "width": "1",
+        "height": "1",
+        "format": "\n<md-button class=\"vibrate filled touched smallfont rounded\" style=\"background-color:#34495e\" ng-click=\"send({payload: 'Hello World'})\"> \n    On\n</md-button> \n\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 190,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a6d10636.7db738",
+        "type": "ui_template",
+        "z": "fc3d37f3.7fea58",
+        "group": "d182a1d2.cb1fa",
+        "name": "off",
+        "order": 8,
+        "width": "1",
+        "height": "1",
+        "format": "\n<md-button class=\"vibrate filled touched smallfont rounded\" style=\"background-color:#8e44ad\" ng-click=\"send({payload: 'Hello World'})\"> \n    Off\n</md-button> \n\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "x": 190,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "eb2e21ce.975e9",
+        "type": "ui_template",
+        "z": "fc3d37f3.7fea58",
+        "group": "d182a1d2.cb1fa",
+        "name": "stuff",
+        "order": 0,
+        "width": "0",
+        "height": "0",
+        "format": "<style>\n  .filled { \n      height: 100% !important;\n\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n  .nr-dashboard-template {\n      padding: 0;\n      margin: 0;\n  }\n  \n  .rounded {\n  border-radius: 12px 12px 12px 12px;\n}\n \n   .bigfont {\n  font-size: 18px;\n}\n\n   .smallfont {\n  font-size: 12px;\n}\n  \n</style>\n\n<script>\n$('.vibrate').on('click', function() {\n  navigator.vibrate(100);\n});\n\nfunction restore_bg(x) {\n            $(this).css(\"background-color\", x);\n    };\n\n$('.touched').on('mousedown', function() {\n    \n    var x= $(this).css(\"background-color\");\n    $(this).css(\"background-color\", \"yellow\");\n    \n    setTimeout(restore_bg.bind(this,x),100);\n    navigator.vibrate(80);\n    });\n    \n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 70,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b393aadf.762b48",
+        "type": "ui_text",
+        "z": "fc3d37f3.7fea58",
+        "group": "ec905845.cb8a58",
+        "order": 0,
+        "width": "2",
+        "height": "1",
+        "name": "",
+        "label": "Rain prob",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "x": 490,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "852b6776.09b3b8",
+        "type": "ui_text",
+        "z": "fc3d37f3.7fea58",
+        "group": "ec905845.cb8a58",
+        "order": 0,
+        "width": "2",
+        "height": "1",
+        "name": "",
+        "label": "Rain",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "x": 480,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "1e7d2760.1f77c9",
+        "type": "ui_text",
+        "z": "fc3d37f3.7fea58",
+        "group": "ec905845.cb8a58",
+        "order": 0,
+        "width": "2",
+        "height": "1",
+        "name": "",
+        "label": "Humidity",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "x": 490,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "8bd2560f.a02488",
+        "type": "ui_text",
+        "z": "fc3d37f3.7fea58",
+        "group": "ec905845.cb8a58",
+        "order": 0,
+        "width": "2",
+        "height": "1",
+        "name": "",
+        "label": "Pressure",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "x": 490,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "7fba913.553ef7",
+        "type": "ui_chart",
+        "z": "fc3d37f3.7fea58",
+        "name": "Last 24 hours temp",
+        "group": "ec905845.cb8a58",
+        "order": 0,
+        "width": "6",
+        "height": "4",
+        "label": "Last 24 hours temp",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "x": 520,
+        "y": 260,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "d182a1d2.cb1fa",
+        "type": "ui_group",
+        "z": "",
+        "name": "Default",
+        "tab": "5029d377.a17aec",
+        "disp": true,
+        "width": "6"
+    },
+    {
+        "id": "ec905845.cb8a58",
+        "type": "ui_group",
+        "z": "",
+        "name": "Wheather",
+        "tab": "1f543710.682f59",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "5029d377.a17aec",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Buttons",
+        "icon": "dashboard",
+        "order": 4
+    },
+    {
+        "id": "1f543710.682f59",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Weather",
+        "icon": "cloud",
+        "order": 3
+    }
+]
