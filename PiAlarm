@@ -1,0 +1,397 @@
+[
+    {
+        "id": "344d49b9.3a4db6",
+        "type": "exec",
+        "z": "32c0550f.0417ca",
+        "command": "curl -X POST https://maker.ifttt.com/trigger/test1/with/key/6qLujJfgZDiEkSsVTP_zH",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": true,
+        "name": "Fire IFTTT (test1)",
+        "x": 730,
+        "y": 480,
+        "wires": [
+            [
+                "efa232be.bef17"
+            ],
+            [
+                "efa62ef5.974cc"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "d39f7733.dcc1d8",
+        "type": "rpi-gpio in",
+        "z": "32c0550f.0417ca",
+        "name": "",
+        "pin": "35",
+        "intype": "down",
+        "debounce": "25",
+        "read": true,
+        "x": 90,
+        "y": 530,
+        "wires": [
+            [
+                "a0390260.3d45e"
+            ]
+        ]
+    },
+    {
+        "id": "efa232be.bef17",
+        "type": "debug",
+        "z": "32c0550f.0417ca",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 910,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "efa62ef5.974cc",
+        "type": "debug",
+        "z": "32c0550f.0417ca",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 910,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "35265c4f.f38014",
+        "type": "BooleanLogic",
+        "z": "32c0550f.0417ca",
+        "name": "",
+        "operation": "AND",
+        "inputCount": 2,
+        "topic": "result",
+        "x": 470,
+        "y": 480,
+        "wires": [
+            [
+                "e9279637.d6b8d8"
+            ]
+        ]
+    },
+    {
+        "id": "e9279637.d6b8d8",
+        "type": "switch",
+        "z": "32c0550f.0417ca",
+        "name": "If true",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 570,
+        "y": 480,
+        "wires": [
+            [
+                "344d49b9.3a4db6"
+            ]
+        ]
+    },
+    {
+        "id": "7d4ae723.c1bb18",
+        "type": "link in",
+        "z": "32c0550f.0417ca",
+        "name": "OUT",
+        "links": [
+            "2ea59fa1.a2848",
+            "73c4caee.8c5e54",
+            "8f160816.1446a8"
+        ],
+        "x": 315,
+        "y": 480,
+        "wires": [
+            [
+                "35265c4f.f38014",
+                "8273ebb0.83a858"
+            ]
+        ]
+    },
+    {
+        "id": "35913bed.34e004",
+        "type": "Invert",
+        "z": "32c0550f.0417ca",
+        "name": "Invert",
+        "x": 280,
+        "y": 530,
+        "wires": [
+            [
+                "35265c4f.f38014"
+            ]
+        ]
+    },
+    {
+        "id": "a0390260.3d45e",
+        "type": "function",
+        "z": "32c0550f.0417ca",
+        "name": "Set Topic",
+        "func": "//Seperate Topics MUST be set for comparison\n\nmsg.topic = \"A\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 200,
+        "y": 530,
+        "wires": [
+            [
+                "35913bed.34e004"
+            ]
+        ]
+    },
+    {
+        "id": "ce053581.cbf128",
+        "type": "rpi-gpio out",
+        "z": "32c0550f.0417ca",
+        "name": "",
+        "pin": "3",
+        "set": "",
+        "level": "0",
+        "freq": "msg.payload",
+        "out": "pwm",
+        "x": 550,
+        "y": 170,
+        "wires": []
+    },
+    {
+        "id": "7bbf80a4.b4403",
+        "type": "comment",
+        "z": "32c0550f.0417ca",
+        "name": "ENABLE Alarm",
+        "info": "",
+        "x": 280,
+        "y": 110,
+        "wires": []
+    },
+    {
+        "id": "4d73c0f1.893a",
+        "type": "link in",
+        "z": "32c0550f.0417ca",
+        "name": "LED",
+        "links": [
+            "da468963.db30c8"
+        ],
+        "x": 485,
+        "y": 170,
+        "wires": [
+            [
+                "ce053581.cbf128"
+            ]
+        ]
+    },
+    {
+        "id": "e1455226.7421",
+        "type": "function",
+        "z": "32c0550f.0417ca",
+        "name": "LED On",
+        "func": "msg.payload = 90;\nmsg.topic   = \"L\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 170,
+        "wires": [
+            [
+                "ce053581.cbf128"
+            ]
+        ]
+    },
+    {
+        "id": "c9d44489.50d618",
+        "type": "inject",
+        "z": "32c0550f.0417ca",
+        "name": "TEST",
+        "topic": "",
+        "payload": "9",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 380,
+        "y": 200,
+        "wires": [
+            [
+                "e1455226.7421"
+            ]
+        ]
+    },
+    {
+        "id": "4cd849cc.7a4608",
+        "type": "comment",
+        "z": "32c0550f.0417ca",
+        "name": "DISABLE",
+        "info": "",
+        "x": 310,
+        "y": 750,
+        "wires": []
+    },
+    {
+        "id": "da468963.db30c8",
+        "type": "link out",
+        "z": "32c0550f.0417ca",
+        "name": "",
+        "links": [
+            "4d73c0f1.893a"
+        ],
+        "x": 475,
+        "y": 810,
+        "wires": []
+    },
+    {
+        "id": "e0a1a058.097",
+        "type": "function",
+        "z": "32c0550f.0417ca",
+        "name": "LED Off",
+        "func": "msg.payload = 0;\nmsg.topic   = \"L\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 370,
+        "y": 810,
+        "wires": [
+            [
+                "da468963.db30c8"
+            ]
+        ]
+    },
+    {
+        "id": "9ab7a06.5519a6",
+        "type": "inject",
+        "z": "32c0550f.0417ca",
+        "name": "TEST",
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 380,
+        "y": 840,
+        "wires": [
+            [
+                "e0a1a058.097"
+            ]
+        ]
+    },
+    {
+        "id": "5f8ba998.86a318",
+        "type": "comment",
+        "z": "32c0550f.0417ca",
+        "name": "ALARM Flow",
+        "info": "",
+        "x": 140,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "43430829.946108",
+        "type": "link in",
+        "z": "32c0550f.0417ca",
+        "name": "Wout",
+        "links": [
+            "8f160816.1446a8"
+        ],
+        "x": 55,
+        "y": 170,
+        "wires": [
+            [
+                "4b35d110.d9a24"
+            ]
+        ]
+    },
+    {
+        "id": "4b35d110.d9a24",
+        "type": "switch",
+        "z": "32c0550f.0417ca",
+        "name": "=1",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 120,
+        "y": 170,
+        "wires": [
+            [
+                "e1455226.7421"
+            ]
+        ]
+    },
+    {
+        "id": "915c123c.9a25e",
+        "type": "link in",
+        "z": "32c0550f.0417ca",
+        "name": "",
+        "links": [
+            "8f160816.1446a8"
+        ],
+        "x": 155,
+        "y": 810,
+        "wires": [
+            [
+                "66be2ea.3e8f0d"
+            ]
+        ]
+    },
+    {
+        "id": "66be2ea.3e8f0d",
+        "type": "switch",
+        "z": "32c0550f.0417ca",
+        "name": "=0",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 240,
+        "y": 810,
+        "wires": [
+            [
+                "e0a1a058.097"
+            ]
+        ]
+    },
+    {
+        "id": "8273ebb0.83a858",
+        "type": "debug",
+        "z": "32c0550f.0417ca",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 570,
+        "y": 370,
+        "wires": []
+    }
+]
