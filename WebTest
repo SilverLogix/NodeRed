@@ -1,0 +1,171 @@
+[
+    {
+        "id": "baee6c82.3f8e8",
+        "type": "http response",
+        "z": "ea609a87.422f18",
+        "name": "http out",
+        "statusCode": "",
+        "headers": {},
+        "x": 670,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "a0d73286.9ed3a",
+        "type": "http in",
+        "z": "ea609a87.422f18",
+        "name": "",
+        "url": "/boo",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 112,
+        "y": 416,
+        "wires": [
+            [
+                "df45baf2.e3a258"
+            ]
+        ]
+    },
+    {
+        "id": "448dca5e.0b87a4",
+        "type": "template",
+        "z": "ea609a87.422f18",
+        "name": "Page Template",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "html",
+        "syntax": "mustache",
+        "template": "{{data.altitude}} <br>\n{{data.concavity}}",
+        "x": 500,
+        "y": 320,
+        "wires": [
+            [
+                "baee6c82.3f8e8"
+            ]
+        ]
+    },
+    {
+        "id": "7515875f.a360c8",
+        "type": "inject",
+        "z": "ea609a87.422f18",
+        "name": "",
+        "topic": "altitude",
+        "payload": "9",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "x": 123,
+        "y": 303,
+        "wires": [
+            [
+                "df45baf2.e3a258"
+            ]
+        ]
+    },
+    {
+        "id": "b9329925.615638",
+        "type": "inject",
+        "z": "ea609a87.422f18",
+        "name": "",
+        "topic": "concavity",
+        "payload": "65",
+        "payloadType": "str",
+        "repeat": "2",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "x": 141,
+        "y": 358,
+        "wires": [
+            [
+                "df45baf2.e3a258"
+            ]
+        ]
+    },
+    {
+        "id": "df45baf2.e3a258",
+        "type": "function",
+        "z": "ea609a87.422f18",
+        "name": "Data buffer",
+        "func": "context.data = context.data || new Object();\n\nswitch (msg.topic) {\n    case \"concavity\": \n    context.data.concavity = msg.payload;\n    msg = null;\n    break;\n    \n    case \"altitude\":\n    context.data.altitude = msg.payload;\n    msg = null;\n    break;\n    \n    default:\n    msg.data = context.data;\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 320,
+        "y": 320,
+        "wires": [
+            [
+                "448dca5e.0b87a4"
+            ]
+        ]
+    },
+    {
+        "id": "c6ec614c.3bb88",
+        "type": "inject",
+        "z": "ea609a87.422f18",
+        "name": "",
+        "topic": "altitude",
+        "payload": "2",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "x": 126,
+        "y": 256,
+        "wires": [
+            [
+                "df45baf2.e3a258"
+            ]
+        ]
+    },
+    {
+        "id": "6b8ef6b9.ac15e8",
+        "type": "http response",
+        "z": "ea609a87.422f18",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 600,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "b36b9564.eb74b8",
+        "type": "http in",
+        "z": "ea609a87.422f18",
+        "name": "",
+        "url": "/key",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 220,
+        "y": 90,
+        "wires": [
+            [
+                "d7fedb1c.482c48"
+            ]
+        ]
+    },
+    {
+        "id": "d7fedb1c.482c48",
+        "type": "template",
+        "z": "ea609a87.422f18",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "html",
+        "syntax": "mustache",
+        "template": "<!DOCTYPE html>\n<html>\n    <head>\n        <title>Remot3.it Login jQuery</title>\n        <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js\"></script>\n        <script>\n            var DEVELOPERKEY = \"KEY\"\n            $(document).ready(function() {\n                    //$('.status').html(\"Making API call...\");\n                    $.ajax({\n                       contentType: 'application/json',\n                       data: JSON.stringify({\n                            \"username\": \"USER\",\n                            \"password\": \"PASS\"\n                       }),\n                       dataType: 'json',\n                       headers: { 'developerkey': DEVELOPERKEY },\n                       success: function(data){\n                           // $('.status').html(\"Login Success\");\n                           // $('.response').append(JSON.stringify(data));\n                            $('.token').append(data.token);\n                       },\n                       error: function(data){\n                            $('.status').html(\"Login Error: \"+JSON.stringify(data));\n                       },\n                       processData: false,\n                       type: 'POST',\n                       url: 'http://api.remot3.it/apv/v23.5/user/login/'\n                });\n            });\n        </script>\n    </head>\n    <body>\n        <div>\n        <p class=\"token\"></p>\n        </div>\n    </body>\n</html>\n\n",
+        "output": "str",
+        "x": 390,
+        "y": 90,
+        "wires": [
+            [
+                "6b8ef6b9.ac15e8"
+            ]
+        ]
+    }
+]
