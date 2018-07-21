@@ -1,23 +1,17 @@
 [
     {
-        "id": "fc1f05e9.633b18",
-        "type": "tab",
-        "label": "Ping Test",
-        "disabled": true,
-        "info": ""
-    },
-    {
         "id": "3576014d.c991fe",
         "type": "ping",
         "z": "fc1f05e9.633b18",
         "name": "",
-        "host": "8.8.8.8",
-        "timer": "10",
+        "host": "1.1.1.1",
+        "timer": "6",
         "x": 70,
         "y": 330,
         "wires": [
             [
-                "3d0860c4.0f37c"
+                "3d0860c4.0f37c",
+                "ce2ae90e.6db5b8"
             ]
         ]
     },
@@ -122,6 +116,18 @@
         "complete": "payload",
         "x": 650,
         "y": 150,
+        "wires": []
+    },
+    {
+        "id": "ce2ae90e.6db5b8",
+        "type": "link out",
+        "z": "fc1f05e9.633b18",
+        "name": "Ping",
+        "links": [
+            "5bf1b666.a14188"
+        ],
+        "x": 220,
+        "y": 410,
         "wires": []
     }
 ]
