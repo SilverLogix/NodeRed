@@ -1,0 +1,61 @@
+[
+    {
+        "id": "c77348bd.199c48",
+        "type": "exec",
+        "z": "d1915444.e66338",
+        "command": "sh /home/pi/bin/speed_test.sh",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Execute",
+        "x": 350,
+        "y": 250,
+        "wires": [
+            [
+                "4ae561fc.d364b"
+            ],
+            [
+                "4ae561fc.d364b"
+            ],
+            [
+                "4ae561fc.d364b"
+            ]
+        ]
+    },
+    {
+        "id": "574c55a9.64d23c",
+        "type": "inject",
+        "z": "d1915444.e66338",
+        "name": "Hour Loop",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "3600",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 200,
+        "y": 250,
+        "wires": [
+            [
+                "c77348bd.199c48"
+            ]
+        ]
+    },
+    {
+        "id": "4ae561fc.d364b",
+        "type": "debug",
+        "z": "d1915444.e66338",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 510,
+        "y": 210,
+        "wires": []
+    }
+]
